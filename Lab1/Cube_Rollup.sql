@@ -111,13 +111,11 @@ group by rollup(ParentProductCategoryID, ProductCategoryID, ProductID);
 --E
 --total
 create view total as
-select  
-    sh.CustomerID, c.SalesPerson,
-    sd.ProductID, sd.OrderQty,
-    a.CountryRegion, a.StateProvince, a.City
-from 
-    SalesLT.SalesOrderDetail sd, SalesLT.SalesOrderHeader sh,
-    SalesLT.CustomerAddress ca, SalesLT.Address a, SalesLT.Customer c
+select sh.CustomerID, c.SalesPerson,
+sd.ProductID, sd.OrderQty,
+a.CountryRegion, a.StateProvince, a.City
+from SalesLT.SalesOrderDetail sd, SalesLT.SalesOrderHeader sh,
+SalesLT.CustomerAddress ca, SalesLT.Address a, SalesLT.Customer c
 where sd.SalesOrderID = sh.SalesOrderID and ca.CustomerID = sh.CustomerID
 and a.AddressID = ca.AddressID and c.CustomerID = ca.CustomerID;
 
